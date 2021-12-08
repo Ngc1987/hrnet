@@ -1,24 +1,15 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import './App.scss';
+import Header from './Components/Header/Header';
+import Form from './Components/Header/Form/Form';
+
+import hwlogo from "./hwlogo.png";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="App relative bg-gradient-to-tl from-green-500 via-white to-white h-auto flex flex-col items-center">
+      <Header/>
+      <Form/>
+      <img className="absolute z-0 h-full" src={hwlogo} alt="logo de wealth ealth" />
     </div>
   );
 }
