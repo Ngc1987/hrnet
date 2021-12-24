@@ -1,6 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit';
 import employeesReducer from './Store/Employees';
-
+// Initialize our store
 export const store = configureStore({
   reducer: {
 	  employees: employeesReducer
