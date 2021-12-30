@@ -2,7 +2,7 @@ import './App.scss';
 import Header from './Components/Header/Header';
 import Form from './Components/Form/Form';
 import bckgnd from "./background3.png";
-import { Routes, Route, Link } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import EmployeesTable from './Components/EmployeesTable/EmployeesTable';
 import styled, { StyledComponent } from "styled-components";
 

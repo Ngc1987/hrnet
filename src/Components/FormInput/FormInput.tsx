@@ -1,4 +1,5 @@
 import React from 'react';
+import { StyledLabel, StyledInput} from '../../styles/styles';
 
 interface Props {
 	type: string;
@@ -16,12 +17,11 @@ const FormInput:React.FC<Props> = ({type, id, min, max, children, value, placeho
 	return (
 		<>
 			
-			<label 
-				htmlFor={id} >{children}</label>
-			<input 
+			<StyledLabel 
+				htmlFor={id} >{children}</StyledLabel>
+			<StyledInput 
 				onChange={(e) =>handleInput(e)} 
 				value={value}
-				className=" mt-1 h-8 p-1 w-full rounded-lg focus:shadow outline-none transition" 
 				type={type} 
 				id={id} 
 				placeholder={placeholder}

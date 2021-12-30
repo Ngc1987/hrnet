@@ -1,39 +1,22 @@
-import React, { useState, useRef, MutableRefObject } from 'react';
+import React, { useState, useRef} from 'react';
 import FormInput from '../FormInput/FormInput';
 import {americanStates, americanState} from '../../models/americanStates';
 import { departments, department } from '../../models/departments';
 import { RootState } from '../../store';
-import { useAppSelector, useAppDispatch } from "../../hooks"
+import { useAppSelector, useAppDispatch } from "../../hooks";
 import { AppDispatch } from '../../store';
 import { Employee, Employees } from '../../Store/Employees';
 import { addNewEmployee } from '../../Store/Employees';
-import { customStyles } from '../CustomSelect/CustomSelect';
+import { customStyles } from '../CustomSelect/CustomSelectStyle';
+import {Modale} from "tsmodale";
+// import { DatePicker } from 'react-rainbow-components';
+// import { DatePicker } from "antd";
+// import moment from 'moment';
+// import "antd/dist/antd.css";
 
-import { DatePicker } from "react-rainbow-components";
 
 import Select from 'react-select';
-import styled from "styled-components";
-
-const ErrorDiv = styled.div`
-	font-size: 13px;
-	color: red;
-	align-self: center;
-	margin-top: 10px;
-`
-const StyledButton = styled.div`
-	font-size: 13px;
-	color: white;
-	background-color: #8acd32d1;
-	transition: all 0.2s ease;
-	border: none;
-	cursor: pointer;
-
-
-	:hover {
-		box-shadow: 0 0 1px 1px #8acd32, 0 0 3px 3px #8acd32;
-		background-color: #8acd32;
-	}
-`
+import {ErrorDiv, StyledButton, StyledForm} from "../../styles/styles"
 
 
 const Form:React.FC = () => {
@@ -48,6 +31,11 @@ const Form:React.FC = () => {
 	const [allDepartments, setDepartments] = useState<department[]>(departments);
 	const [invalidForm, setInvalidForm] = useState(false);
 
+	// State to show or not the validation modale
+	const [showModale, setShowModale] = useState<boolean>(false);
+	console.log(showModale)
+
+	
 	// Empty model to create a new employee
 	const emptyEmployee = {
 		"firstName": "",
@@ -61,16 +49,13 @@ const Form:React.FC = () => {
 		"department": ""
 	}
 
-
-	
 	// Set the state with an empty employee
 	const [newEmployee, setNewEmployee] = useState<Employee>(emptyEmployee)
 
-	// console.log(newEmployee)
 	// Function to take the value of all the inputs, to put on our new employee state
-	const handleChangeInput = (e: any):void => {
+	const handleChangeInput = (e: { target: { id: string; value: string; }; }):void => {
 		// console.log(e.target.value)
-		setNewEmployee((newEmployee) => ({
+		setNewEmployee((newEmployee: any) => ({
 		...newEmployee,
 		[e.target.id]: e.target.value
 		}));
@@ -101,20 +86,24 @@ const Form:React.FC = () => {
 		}));
 	}
 
+	// Function to make the two select components empty after the validation of the form
 	const clearInputs = () => {
 		setNewEmployee(emptyEmployee);
 		selectStateRef.current.clearValue();
 		selectDepartmentRef.current.clearValue();
 	}
 
-	function handleChangeBirthDate(date:any):void {
-		setNewEmployee((newEmployee) => ({
-			...newEmployee,
-			"birthDate": date
+	const onChange = (date: any, dateString: any) => {
+	setNewEmployee((newEmployee) => ({
+		...newEmployee,
+		"birthDate": dateString
 		}));
   	}
 
-	function validForm() {
+	
+	function validForm(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
+		e.preventDefault();
+
 		if(newEmployee.firstName.length < 3
 		|| newEmployee.lastName.length < 3
 		|| newEmployee.startDay === ""
@@ -129,7 +118,8 @@ const Form:React.FC = () => {
 		else {
 			dispatch(addNewEmployee(newEmployee));
 			clearInputs();
-			setInvalidForm(false)
+			setInvalidForm(false);
+			setShowModale(true);
 		}
 		console.log(newEmployee.zipcode)
 	}
@@ -147,12 +137,16 @@ const Form:React.FC = () => {
 		return minDate
 	}
 
-	return (
-		<form 
-			className="flex shadow-3xl flex-col items-start w-full md:w-96 mx-3 mb-20 h-auto  mt-16 rounded-3xl bg-clip-padding backdrop-filter backdrop-blur-lg bg-opacity-5 bg-black p-6 z-0"
-			 >
 
-			<h2 className="mb-4 text-xl self-center" >Create a new employee</h2>
+ 	const dateFormatList = ['DD/MM/YYYY', 'DD/MM/YY'];
+	 console.log(newEmployee)
+
+	return (
+		<>
+		<StyledForm 
+			>
+
+			<h2>Create a new employee</h2>
 
 			<FormInput 
 				type="text" 
@@ -180,13 +174,19 @@ const Form:React.FC = () => {
 			{/* <DatePicker
 				id="datePicker-1"
 				value={newEmployee.birthDate}
-				onChange={handleChangeBirthDate}
+				// onChange={handleChangeBirthDate}
 				// label="DatePicker Label"
 				formatStyle="medium"
 				// required
             	// error="Select a date is Required"
             	placeholder="Select a date"
-				/> */}
+			/> */}
+
+			{/* <DatePicker 
+				onChange={onChange}
+				defaultValue={moment('01/01/2015', dateFormatList[0])} format={dateFormatList}
+				// value={newEmployee.birthDate}
+				 /> */}
 			<FormInput 
 				type="date" 
 				id="startDay" 
@@ -197,7 +197,7 @@ const Form:React.FC = () => {
 				handleInput={handleChangeInput} 
 				/>
 
-			<h3 className="mt-4 text-lg self-center" >Adress</h3>
+			<h3>Adress</h3>
 
 			<FormInput 
 				type="text" 
@@ -220,7 +220,6 @@ const Form:React.FC = () => {
 				theme={(theme)=> ({...theme, borderRadius: 10})}
 				options={states} 
 				placeholder="Select one"
-				className=" p-1 w-full rounded-lg focus:shadow outline-none transition" 
 				id="state"
 				onChange={(e) =>handleChangeState(e)}  
 				ref={selectStateRef}
@@ -242,7 +241,6 @@ const Form:React.FC = () => {
 				theme={(theme)=> ({...theme, borderRadius: 10})}
 				options={allDepartments} 
 				placeholder="Select one"
-				className=" p-1 w-full rounded-lg focus:shadow outline-none transition" 
 				id="department"
 				onChange={(e) =>handleChangeDepartment(e)}  
 				ref={selectDepartmentRef}
@@ -253,11 +251,19 @@ const Form:React.FC = () => {
 			<ErrorDiv className="error" >Veuillez compléter correctement tous les champs </ErrorDiv>
 			:
 			"	"
-		}
-			<StyledButton onClick={() => {validForm();}} className="self-center mt-4 py-1 px-3 rounded-lg border" >Save</StyledButton>
+			}
+			<StyledButton onClick={(e) => {validForm(e);}}  >Save</StyledButton>
 			
-		</form>
+		</StyledForm>
+
+		{showModale && 
+				<Modale 
+					text="Congratulations, you successly created a new employee !" colour="#8acd32" />
+		}
+
+		</>
+
 	)
 }
 
-export default Form
+export default Form;
