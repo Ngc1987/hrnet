@@ -1,4 +1,4 @@
-import React, { useState, useRef} from 'react';
+import React, { useState, useRef, useEffect} from "react";
 import FormInput from '../FormInput/FormInput';
 import {americanStates, americanState} from '../../models/americanStates';
 import { departments, department } from '../../models/departments';
@@ -8,7 +8,8 @@ import { AppDispatch } from '../../store';
 import { Employee, Employees } from '../../Store/Employees';
 import { addNewEmployee } from '../../Store/Employees';
 import { customStyles } from '../CustomSelect/CustomSelectStyle';
-import {Modale} from "tsmodale";
+// import Modale from "tsmodale"
+// import Modale from './Modale';
 // import { DatePicker } from 'react-rainbow-components';
 // import { DatePicker } from "antd";
 // import moment from 'moment';
@@ -16,7 +17,8 @@ import {Modale} from "tsmodale";
 
 
 import Select from 'react-select';
-import {ErrorDiv, StyledButton, StyledForm} from "../../styles/styles"
+import {ErrorDiv, StyledButton, StyledForm, StyledModale, ModaleButton, StyledLayout} from "../../styles/styles"
+import { Modale } from 'tsmodale';
 
 
 const Form:React.FC = () => {
@@ -33,9 +35,21 @@ const Form:React.FC = () => {
 
 	// State to show or not the validation modale
 	const [showModale, setShowModale] = useState<boolean>(false);
+	// const [hideModale, setHideModale] = useState<boolean>(true);
 	console.log(showModale)
 
-	
+	// const showM = () => {
+	// 	setShowModale(true);
+	// 	setHideModale(false);
+	// }
+	const hideModale = ():void => {
+		setShowModale(false);
+		// setHideModale(true);
+	}
+
+	// useEffect(() => {
+	// 		setShowModale(false);
+	// }, [])
 	// Empty model to create a new employee
 	const emptyEmployee = {
 		"firstName": "",
@@ -43,7 +57,7 @@ const Form:React.FC = () => {
 		"birthDate": "",
 		"startDay": "",
 		"street": "",
-		"city": "",
+		"city": "",	
 		"state": "",
 		"zipcode": "",
 		"department": ""
@@ -93,7 +107,7 @@ const Form:React.FC = () => {
 		selectDepartmentRef.current.clearValue();
 	}
 
-	const onChange = (date: any, dateString: any) => {
+	const onChange = (date: any, dateString: any):void  => {
 	setNewEmployee((newEmployee) => ({
 		...newEmployee,
 		"birthDate": dateString
@@ -252,13 +266,21 @@ const Form:React.FC = () => {
 			:
 			"	"
 			}
-			<StyledButton onClick={(e) => {validForm(e);}}  >Save</StyledButton>
+			<StyledButton onClick={(e) => validForm(e)}  >Save</StyledButton>
 			
 		</StyledForm>
 
 		{showModale && 
+			<StyledLayout>
 				<Modale 
-					text="Congratulations, you successly created a new employee !" colour="#8acd32" />
+					text="Congratulations, you successly created a new employee !" 
+					buttonText="OK"
+					colour="#8acd32" 
+					hideModale={hideModale} 
+					// autoclose={2000}
+					/>
+					
+				</StyledLayout>
 		}
 
 		</>

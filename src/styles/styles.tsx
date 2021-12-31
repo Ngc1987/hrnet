@@ -50,8 +50,32 @@ export const StyledButton: StyledComponent<"button", any, {}, never> = styled.bu
 	background-color: #8acd32d1;
 	align-self: center;
 	transition: all 0.2s ease;
+	border: 1px solid white;
+	cursor: pointer;
+
+
+	:hover {
+		box-shadow: 0 0 1px 1px #8acd32, 0 0 3px 3px #8acd32;
+		background-color: #8acd32;
+	}
+`
+export const ModaleButton: StyledComponent<"button", any, {}, never> = styled.button`
+	font-size: 13px;
+	width: 50px;
+	padding: 5px 6px;
+	text-align: center;
+	border-radius: 5px;
+	/* margin-top: 25px; */
+	color: white;
+	background-color: #8acd32d1;
+	align-self: center;
+	transition: all 0.2s ease;
 	border: none;
 	cursor: pointer;
+	position: relative;
+	bottom: 10px;
+	left: 50%;
+	transform: translateX(-50%);
 
 
 	:hover {
@@ -63,17 +87,34 @@ export const StyledButton: StyledComponent<"button", any, {}, never> = styled.bu
 
 export const StyledModale: StyledComponent<"div", any, {}, never> = styled.div`
 	position: absolute;
-	width: 100vw;
-	height: 100%;
-	display:flex;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	width: auto;
+	height: auto;
+	/* display:flex;
 	flex-direction:column;
 	justify-content:center;
 	align-items:center;
 	background-color: transparent;
-	backdrop-filter: blur(1px);
+	backdrop-filter: blur(1px); */
 	z-index: 100;
 	transition: all 0.5s ease;
 `
+
+export const StyledLayout: StyledComponent<"div", any, {}, never> = styled.div`
+		display:flex;
+		flex-direction:column;
+		justify-content:center;
+		align-items:center;
+		width: 100%;
+		height: 100vh;
+		background-color: transparent;
+		backdrop-filter: blur(1px);
+		z-index: 100;
+		position: absolute;
+		transition: opacity 0.5s ease;
+	`
 // **********************************
 // Styled elements of FormInput component
 // **********************************
@@ -139,7 +180,7 @@ export const StyledLabel: StyledComponent<"label", any, {}, never> = styled.labe
 // **********************************
 
 export const StyledNavLink = styled.div`
-	padding: 5px;
+	padding: 8px 10px;
 	background: #92dd30;
 	text-align: center;
 	width: 140px;
@@ -148,6 +189,11 @@ export const StyledNavLink = styled.div`
 	margin-top: 20px;
 	border-radius: 10px;
 	transition: all 0.2s ease;
+	
+	a {
+		text-decoration: none;
+		color: white;
+	}
 
 	:hover {
 		/* font-size: 1.5rem; */
