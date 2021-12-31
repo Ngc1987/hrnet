@@ -14,6 +14,7 @@
     "ag-grid-community": "^26.2.0",
     "ag-grid-react": "^26.2.0",
     "docdash": "^1.2.0",
+    "jsdoc": "^3.6.7",
     "postcss-flexbugs-fixes": "^5.0.2",
     "postcss-preset-env": "^7.1.0",
     "react": "^17.0.2",
@@ -25,7 +26,7 @@
     "react-scripts": "^5.0.0",
     "react-select": "^5.2.1",
     "styled-components": "^5.3.3",
-    "tsmodale": "file:../../Npm_components/tsmodale/tsmodale/tsmodale-1.0.1.tgz",
+    "tsmodale": "^1.1.2",
     "typescript": "^4.5.2",
     "web-vitals": "^1.1.2"
   },

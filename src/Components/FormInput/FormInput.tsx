@@ -5,7 +5,7 @@ import styled, {StyledComponent} from "styled-components";
 
 const StyledInput: StyledComponent<"input", any, {}, never> = styled.input`
 	padding: 5px;
-	margin-top: 0.25rem;
+	margin-top: 0.5rem;
 	height: 2.2rem;
 	width: 100%;
 	border-radius: 10px;

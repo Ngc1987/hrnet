@@ -30,11 +30,12 @@ export const StyledForm: StyledComponent<"form", any, {}, never> = styled.form`
 	h2 {
 		text-align: center;
 		font-size: 1.4rem;
+		margin-bottom: 10px;
 	}
 	h3 {
 		text-align: center;
 		font-size: 1.2rem;
-		margin-top: 10px;
+		margin-top: 20px;
 		margin-bottom: -10px;
 	}
 `
@@ -120,7 +121,7 @@ export const StyledLayout: StyledComponent<"div", any, {}, never> = styled.div`
 // **********************************
 export const StyledInput: StyledComponent<"input", any, {}, never> = styled.input`
 	padding: 5px;
-	margin-top: 0.25rem;
+	margin-top: 0.5rem;
 	height: 2.2rem;
 	width: 100%;
 	border-radius: 10px;
@@ -138,30 +139,32 @@ export const StyledInput: StyledComponent<"input", any, {}, never> = styled.inpu
 export const HelpButton: StyledComponent<"div", any, {}, never> = styled.div`
 	width: auto;
 	height: auto;
-	padding: 5px;
-	background-color: #ffffff20;
+	padding: 6px 10px;
+	margin-top: 30px;
+	background-color: #0000001d;
 	color: #000;
 	cursor: pointer;
 	backdrop-filter: blur(1px);
 	border-radius: 5px;
-`
-
-export const StyledHelpDiv: StyledComponent<"div", any, {}, never> = styled.div`
-	width: 250px;
-	height: auto;
-	margin-top: 25px;
-	background-color: #ffffff20;
-	color: #000;
-	backdrop-filter: blur(1px);
-	border-radius: 10px;
 	transition: all 0.3s ease;
 `
+
+// export const StyledHelpDiv: StyledComponent<"div", any, {}, never> = styled.div`
+// 	width: 250px;
+// 	/* height: auto; */
+// 	/* margin-top: 25px; */
+// 	background-color: #ffffff20;
+// 	color: #000;
+// 	backdrop-filter: blur(1px);
+// 	border-radius: 10px;
+// 	transition: all 0.3s ease;
+// `
 
 // **********************************
 // Styled elements of EmployeesTable component
 // **********************************
 export const StyledSection: StyledComponent<"section", any, {}, never> = styled.section`
-	margin-top: 60px;
+	margin-top: 30px;
 	/* background-color: #00000035; */
 	/* padding-left: 20px; */
 	border-radius: 20px;
@@ -172,7 +175,11 @@ export const StyledSection: StyledComponent<"section", any, {}, never> = styled.
 // **********************************
 export const StyledLabel: StyledComponent<"label", any, {}, never> = styled.label`
 	margin-bottom: -5px;
-	margin-top: 5px;
+	margin-top: 10px;
+`
+export const StyledSelectLabel: StyledComponent<"label", any, {}, never> = styled.label`
+	margin-bottom: 3px;
+	margin-top: 10px;
 `
 
 // **********************************
@@ -185,7 +192,8 @@ export const StyledNavLink = styled.div`
 	text-align: center;
 	width: 140px;
 	color: white;
-	font-size: 1.2rem;
+	font-size: 1.3rem;
+	font-weight: bold;
 	margin-top: 20px;
 	border-radius: 10px;
 	transition: all 0.2s ease;
@@ -245,4 +253,83 @@ export const H1: StyledComponent<"h1", any, {}, never> = styled.h1`
 	font-family: Rampart, 'Times New Roman', Times, serif;
 	font-weight: bold;
 	font-style: italic;
+`
+
+// **********************************
+// Styled elements of Error component
+// **********************************
+
+export const ErrorSection: StyledComponent<"section", any, {}, never> = styled.section`
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	min-height: 500px;
+	color: #000000;
+	flex: 1 1;
+`
+export const ErrorNumber: StyledComponent<"p", any, {}, never> = styled.p`
+	font-size: 96px;
+	font-weight: 700;
+
+	@media (min-width: 768px) {
+		font-size: 288px;
+		margin-top: 90px;
+	}
+`
+export const ErrorText: StyledComponent<"div", any, {}, never> = styled.div`
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	font-size: 18px;
+	font-weight: 500;
+
+	@media (min-width: 768px) {
+		font-size: 36px;
+
+		p {
+			margin-left: 10px;
+		}
+	}
+`
+export const ErrorLink: StyledComponent<"p", any, {}, never> = styled.p`
+	font-size: 14px;
+	font-weight: 500;
+	text-decoration: underline;
+	margin-top: 120px;
+	text-align: center;
+	color: #000000;
+
+	@media (min-width: 768px) {
+		margin-bottom: 100px;
+		font-size: 18px;
+	}
+`
+
+// **********************************
+// Styled elements of Error component
+// **********************************
+export const StyledImg: StyledComponent<"img", any, {}, never> = styled.img`
+	position: absolute;
+	z-index: -50;
+	object-fit: cover;
+	min-width: 100%;
+	max-width: 100%;
+	/* margin-top: 50px; */
+	/* min-width: 100vw; */
+	/* max-width: 100vw; */
+	min-height: 100%;
+	/* max-height: 100%; */
+	/* min-height: 100vh; */
+	/* max-height: 100vh; */
+`
+export const StyledMain: StyledComponent<"main", any, {}, never> = styled.main`
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	flex: 1;
+	min-height: 100vh;
+	min-width: 100vw;
 `

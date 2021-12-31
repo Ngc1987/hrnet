@@ -1,57 +1,36 @@
-import React, { useState, useRef, useEffect} from "react";
+import React, { useState, useRef } from "react";
 import FormInput from '../FormInput/FormInput';
 import {americanStates, americanState} from '../../models/americanStates';
 import { departments, department } from '../../models/departments';
-import { RootState } from '../../store';
-import { useAppSelector, useAppDispatch } from "../../hooks";
+import {useAppDispatch } from "../../hooks";
 import { AppDispatch } from '../../store';
-import { Employee, Employees } from '../../Store/Employees';
+import { Employee} from '../../Store/Employees';
 import { addNewEmployee } from '../../Store/Employees';
 import { customStyles } from '../CustomSelect/CustomSelectStyle';
-// import Modale from "tsmodale"
-// import Modale from './Modale';
-// import { DatePicker } from 'react-rainbow-components';
-// import { DatePicker } from "antd";
-// import moment from 'moment';
-// import "antd/dist/antd.css";
-
-
 import Select from 'react-select';
-import {ErrorDiv, StyledButton, StyledForm, StyledModale, ModaleButton, StyledLayout} from "../../styles/styles"
+import {ErrorDiv, StyledButton, StyledForm, StyledSelectLabel, StyledLayout} from "../../styles/styles"
 import { Modale } from 'tsmodale';
 
 
 const Form:React.FC = () => {
 
-	// Fetch our employees state array
-	const employees: Employees = useAppSelector((state: RootState) => state.employees);
-	// console.log(employees);
 	const dispatch: AppDispatch = useAppDispatch();
 	// Datas of all the american states we need on our select states input
 	const [states, setStates] = useState<americanState[]>(americanStates);
 	// Datas of all the departments we need on our select departments input
 	const [allDepartments, setDepartments] = useState<department[]>(departments);
-	const [invalidForm, setInvalidForm] = useState(false);
+	const [invalidForm, setInvalidForm] = useState<boolean>(false);
 
 	// State to show or not the validation modale
 	const [showModale, setShowModale] = useState<boolean>(false);
-	// const [hideModale, setHideModale] = useState<boolean>(true);
-	console.log(showModale)
+	// console.log(showModale)
 
-	// const showM = () => {
-	// 	setShowModale(true);
-	// 	setHideModale(false);
-	// }
 	const hideModale = ():void => {
 		setShowModale(false);
-		// setHideModale(true);
 	}
 
-	// useEffect(() => {
-	// 		setShowModale(false);
-	// }, [])
 	// Empty model to create a new employee
-	const emptyEmployee = {
+	const emptyEmployee:Employee = {
 		"firstName": "",
 		"lastName": "",
 		"birthDate": "",
@@ -79,8 +58,6 @@ const Form:React.FC = () => {
 	const selectStateRef:any = useRef();
 	// Ref to the department select input
 	const selectDepartmentRef:any = useRef();
-	// console.log(selectStateRef.current)
-	// console.log(selectStateRef)
 
 
 	// Function to take the value of the state input, to put on our new employee state
@@ -101,18 +78,18 @@ const Form:React.FC = () => {
 	}
 
 	// Function to make the two select components empty after the validation of the form
-	const clearInputs = () => {
+	const clearInputs = ():void => {
 		setNewEmployee(emptyEmployee);
 		selectStateRef.current.clearValue();
 		selectDepartmentRef.current.clearValue();
 	}
 
-	const onChange = (date: any, dateString: any):void  => {
-	setNewEmployee((newEmployee) => ({
-		...newEmployee,
-		"birthDate": dateString
-		}));
-  	}
+	// const onChange = (date: any, dateString: any):void  => {
+	// setNewEmployee((newEmployee) => ({
+	// 	...newEmployee,
+	// 	"birthDate": dateString
+	// 	}));
+  	// }
 
 	
 	function validForm(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
@@ -228,7 +205,7 @@ const Form:React.FC = () => {
 				handleInput={handleChangeInput} 
 				/>
 			
-			<label className="mt-2" htmlFor="state" >State</label>
+			<StyledSelectLabel htmlFor="state" >State</StyledSelectLabel>
 			<Select 
 				styles={customStyles} 
 				theme={(theme)=> ({...theme, borderRadius: 10})}
@@ -249,7 +226,7 @@ const Form:React.FC = () => {
 				handleInput={handleChangeInput} 
 				/>
 
-			<label className="mt-2" htmlFor="department" >Department</label>
+			<StyledSelectLabel htmlFor="department" >Department</StyledSelectLabel>
 			<Select 
 				styles={customStyles} 
 				theme={(theme)=> ({...theme, borderRadius: 10})}
