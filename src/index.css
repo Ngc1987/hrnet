@@ -1,9 +1,3 @@
-/* ./src/index.css */
-/* @tailwind base;
-@tailwind components;
-@tailwind utilities; */
-
-
 
 *,
 *::before,
@@ -12,7 +6,9 @@
   margin:0;
   box-sizing: border-box;
 }
-
+h2 {
+  text-align: center;
+}
 body {
   margin: 0;
   font-family: Neucha, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',

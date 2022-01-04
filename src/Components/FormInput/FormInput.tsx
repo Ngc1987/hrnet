@@ -1,22 +1,6 @@
 import React from 'react';
-import { StyledLabel} from '../../styles/styles';
-import styled, {StyledComponent} from "styled-components";
+import { StyledLabel, StyledInput} from '../../styles/styles';
 
-
-const StyledInput: StyledComponent<"input", any, {}, never> = styled.input`
-	padding: 5px;
-	margin-top: 0.5rem;
-	height: 2.2rem;
-	width: 100%;
-	border-radius: 10px;
-	outline: none;
-	transition: all 0.3s ease;
-	border: none;
-
-	:focus {
-		box-shadow: 0 0 1px 1px #fff, 0 0 3px 3px #fff;
-	}
-`
 
 interface Props {
 	type: string;
@@ -27,13 +11,17 @@ interface Props {
 	value: string | number;
 	placeholder?: string
 	handleInput: (event: any) => void;
+	error?: string | boolean;
 }
 
-const FormInput:React.FC<Props> = ({type, id, min, max, children, value, placeholder, handleInput}) => {
-
+/**
+ * @component
+ * @description Component FormInput, for every input on the form, who don't come from an external library, pure html element
+ */
+const FormInput:React.FC<Props> = ({type, id, min, max, children, value, placeholder, handleInput, error}) => {
+	console.log(error)
 	return (
 		<>
-			
 			<StyledLabel 
 				htmlFor={id} >{children}</StyledLabel>
 			<StyledInput 
@@ -44,7 +32,8 @@ const FormInput:React.FC<Props> = ({type, id, min, max, children, value, placeho
 				placeholder={placeholder}
 				min={min} 
 				max={max}/>
-			
+
+				{error && <p>{error}</p>}
 		</>
 	)
 }

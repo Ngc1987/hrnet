@@ -1,26 +1,14 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import MockedDatas from '../Mocks/MockedDatas';
+import { Employee, Employees } from '../models/models';
 
-export interface Employee {
-  firstName: string,
-  lastName: string,
-  birthDate: string,
-  startDay: string,
-  street: string,
-  city: string,
-  state: string,
-  zipcode: number | string,
-  department: string,
-}
-export interface Employees {
-  employees: Employee[]
-}
-
+// Initialize the state with mocked datas
 const initialState: Employees = {
   employees: MockedDatas
 }
 console.log(initialState)
 
+// Create actions on reducers
 export const employeeSlice = createSlice({
   name: 'employee',
   initialState,
@@ -44,17 +32,11 @@ export const employeeSlice = createSlice({
           department: action.payload.department
         }
       ]
-    },
-    deleteEmployee: (state) => {
-    //   state.employees -= 1
-    },
-    modifyEmployee: (state, action: PayloadAction<number>) => {
-    //   state.employees += action.payload
-    },
+    }
   },
 })
 
 // Action creators are generated for each case reducer function
-export const { addNewEmployee, deleteEmployee, modifyEmployee } = employeeSlice.actions
+export const { addNewEmployee} = employeeSlice.actions;
 
-export default employeeSlice.reducer
+export default employeeSlice.reducer;
