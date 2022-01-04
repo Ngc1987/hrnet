@@ -1,16 +1,19 @@
-import React, { useState, useRef } from "react";
-import FormInput from '../FormInput/FormInput';
-import {americanStates, americanState} from '../../models/americanStates';
-import { departments, department } from '../../models/departments';
+import React, { useState, useRef, Suspense } from "react";
+import {department, americanState} from '../../models/models';
+import { departments, americanStates } from '../../Mocks/MockedDatas';
 import {useAppDispatch } from "../../hooks";
 import { AppDispatch } from '../../store';
-import { Employee} from '../../Store/Employees';
+import { Employee } from "../../models/models";
 import { addNewEmployee } from '../../Store/Employees';
 import { customStyles } from '../CustomSelect/CustomSelectStyle';
-import Select from 'react-select';
-import {ErrorDiv, StyledButton, StyledForm, StyledSelectLabel, StyledLayout} from "../../styles/styles"
-import { Modale } from 'tsmodale';
+import {ErrorDiv, StyledButton, StyledForm, StyledSelectLabel, StyledLayout} from "../../styles/styles";
+import Loading from "../Loading/Loading";
+import 'react-modern-calendar-datepicker/lib/DatePicker.css';
+import DatePicker, {Day, DayValue } from 'react-modern-calendar-datepicker';
 
+const Modale = React.lazy(() => import("../Utils/modale"));
+const Select = React.lazy(() => import("react-select"));
+const FormInput = React.lazy(() => import("../FormInput/FormInput"));
 
 const Form:React.FC = () => {
 
@@ -43,7 +46,7 @@ const Form:React.FC = () => {
 	}
 
 	// Set the state with an empty employee
-	const [newEmployee, setNewEmployee] = useState<Employee>(emptyEmployee)
+	const [newEmployee, setNewEmployee] = useState<Employee>(emptyEmployee);
 
 	// Function to take the value of all the inputs, to put on our new employee state
 	const handleChangeInput = (e: { target: { id: string; value: string; }; }):void => {
@@ -68,6 +71,7 @@ const Form:React.FC = () => {
 		"state": e?.label
 		}));
 	}
+	
 	// Function to take the value of the department input, to put on our new employee state
 	const handleChangeDepartment = (e: any):void => {
 		// console.log(e?.value)
@@ -84,12 +88,7 @@ const Form:React.FC = () => {
 		selectDepartmentRef.current.clearValue();
 	}
 
-	// const onChange = (date: any, dateString: any):void  => {
-	// setNewEmployee((newEmployee) => ({
-	// 	...newEmployee,
-	// 	"birthDate": dateString
-	// 	}));
-  	// }
+	
 
 	
 	function validForm(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
@@ -117,7 +116,7 @@ const Form:React.FC = () => {
 
 	// Max value for the startDay input, who is today every time
 	const today:string = new Date().toISOString().split('T')[0];
-
+	console.log(today)
 	// Max value for the birthDate input, who is today less 18 years. I think in this case all of the employees have 18 or more, we don't take childs at work in normal enterprises
 	const minDateForWork = ():string =>  {
 		let minDate:string = "";
@@ -129,16 +128,42 @@ const Form:React.FC = () => {
 	}
 
 
- 	const dateFormatList = ['DD/MM/YYYY', 'DD/MM/YY'];
+ 	const dateFormatList: string[] = ['DD/MM/YYYY', 'DD/MM/YY'];
 	 console.log(newEmployee)
+
+	const [Day, setDay] = useState<DayValue>(null);
+	console.log(Day)
+
+	// if(Day) {
+	// 	let day = "0"
+	// 	if(Day.month < 10) {
+	// 		day += Day.month
+	// 	}
+	// 	setNewEmployee((newEmployee) => ({
+	// 	...newEmployee,
+	// 	"birthDate": `${Day.day}/${day}/${Day.year}`
+	// 	}));
+	// }
+	const setBirthDate = (e: any):void  => {
+		console.log(typeof e)
+		let month: string = "0"
+		if(e.month < 10) {
+			month += e.month
+		}
+		setNewEmployee((newEmployee) => ({
+			...newEmployee,
+			"birthDate": `${e.day}/${month}/${e.year}`
+			}));
+  	}
 
 	return (
 		<>
 		<StyledForm 
 			>
 
-			<h2>Create a new employee</h2>
+			<Suspense fallback={<Loading/>}>
 
+			<h2>Create a new employee</h2>
 			<FormInput 
 				type="text" 
 				id="firstName" 
@@ -146,6 +171,9 @@ const Form:React.FC = () => {
 				value={newEmployee.firstName}
 				handleInput={(e) => handleChangeInput(e)} 
 				/>
+				
+
+			
 			<FormInput 
 				type="text" 
 				id="lastName" 
@@ -153,6 +181,8 @@ const Form:React.FC = () => {
 				value={newEmployee.lastName}
 				handleInput={handleChangeInput} 
 				/>
+				
+			
 			<FormInput 
 				type="date" 
 				id="birthDate" 
@@ -162,22 +192,13 @@ const Form:React.FC = () => {
 				value={newEmployee.birthDate}
 				handleInput={handleChangeInput} 
 				/>
-			{/* <DatePicker
-				id="datePicker-1"
-				value={newEmployee.birthDate}
-				// onChange={handleChangeBirthDate}
-				// label="DatePicker Label"
-				formatStyle="medium"
-				// required
-            	// error="Select a date is Required"
-            	placeholder="Select a date"
-			/> */}
 
-			{/* <DatePicker 
-				onChange={onChange}
-				defaultValue={moment('01/01/2015', dateFormatList[0])} format={dateFormatList}
-				// value={newEmployee.birthDate}
-				 /> */}
+				<DatePicker
+				value={Day}
+				onChange={(e) => {setBirthDate(e); setDay(e)}}
+				shouldHighlightWeekends
+				/>
+			
 			<FormInput 
 				type="date" 
 				id="startDay" 
@@ -186,10 +207,10 @@ const Form:React.FC = () => {
 				children="Start day"
 				value={newEmployee.startDay}
 				handleInput={handleChangeInput} 
+				// placeholder={today}
 				/>
 
 			<h3>Adress</h3>
-
 			<FormInput 
 				type="text" 
 				id="street" 
@@ -197,6 +218,8 @@ const Form:React.FC = () => {
 				value={newEmployee.street}
 				handleInput={handleChangeInput} 
 				/>
+				
+			
 			<FormInput 
 				type="text" 
 				id="city" 
@@ -204,19 +227,22 @@ const Form:React.FC = () => {
 				value={newEmployee.city}
 				handleInput={handleChangeInput} 
 				/>
+				
+			
 			
 			<StyledSelectLabel htmlFor="state" >State</StyledSelectLabel>
 			<Select 
 				styles={customStyles} 
 				theme={(theme)=> ({...theme, borderRadius: 10})}
 				options={states} 
-				placeholder="Select one"
-				id="state"
+				inputId="state"
+				placeholder="Alabama"
 				onChange={(e) =>handleChangeState(e)}  
 				ref={selectStateRef}
+				// defaultInputValue="Alabama"
 				// isClearable={true}
 				/>
-
+			
 			<FormInput 
 				type="number" 
 				id="zipcode" 
@@ -231,33 +257,33 @@ const Form:React.FC = () => {
 				styles={customStyles} 
 				theme={(theme)=> ({...theme, borderRadius: 10})}
 				options={allDepartments} 
-				placeholder="Select one"
-				id="department"
+				placeholder="Marketing"
+				inputId="department"
 				onChange={(e) =>handleChangeDepartment(e)}  
 				ref={selectDepartmentRef}
 				// isClearable={true}
 				/>
+			
+			{invalidForm && <ErrorDiv className="error" >Veuillez compléter correctement tous les champs </ErrorDiv>}
 
-			{invalidForm ? 
-			<ErrorDiv className="error" >Veuillez compléter correctement tous les champs </ErrorDiv>
-			:
-			"	"
-			}
 			<StyledButton onClick={(e) => validForm(e)}  >Save</StyledButton>
+			
+		</Suspense>
 			
 		</StyledForm>
 
 		{showModale && 
 			<StyledLayout>
-				<Modale 
-					text="Congratulations, you successly created a new employee !" 
-					buttonText="OK"
-					colour="#8acd32" 
-					hideModale={hideModale} 
-					// autoclose={2000}
-					/>
-					
-				</StyledLayout>
+				<Suspense fallback={<Loading/>}>
+					<Modale 
+						text="Congratulations, you successly created a new employee !" 
+						buttonText="OK"
+						colour="#8acd32" 
+						hideModale={hideModale} 
+						// autoclose={2000}
+						/>
+				</Suspense>
+			</StyledLayout>
 		}
 
 		</>

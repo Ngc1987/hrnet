@@ -1,7 +1,7 @@
 {
   "name": "hrnet",
   "version": "0.1.0",
-  "private": true,
+  "private": false,
   "dependencies": {
     "@craco/craco": "^5.9.0",
     "@reduxjs/toolkit": "^1.7.0",
@@ -61,6 +61,7 @@
     "normalize.css": "^8.0.1",
     "postcss": "^8.4.5",
     "postcss-loader": "^6.2.1",
+    "react-modern-calendar-datepicker": "^3.1.6",
     "sass": "^1.45.0"
   },
   "files.watcherExclude": {

@@ -127,6 +127,7 @@ export const StyledInput: StyledComponent<"input", any, {}, never> = styled.inpu
 	border-radius: 10px;
 	outline: none;
 	transition: all 0.3s ease;
+	border: none;
 
 	:focus {
 		box-shadow: 0 0 1px 1px #fff, 0 0 3px 3px #fff;
@@ -191,16 +192,15 @@ export const StyledNavLink = styled.div`
 	background: #92dd30;
 	text-align: center;
 	width: 140px;
-	color: white;
 	font-size: 1.3rem;
-	font-weight: bold;
+	/* font-weight: bold; */
 	margin-top: 20px;
 	border-radius: 10px;
 	transition: all 0.2s ease;
 	
 	a {
 		text-decoration: none;
-		color: white;
+		color: #000;
 	}
 
 	:hover {
@@ -308,7 +308,7 @@ export const ErrorLink: StyledComponent<"p", any, {}, never> = styled.p`
 `
 
 // **********************************
-// Styled elements of Error component
+// Styled elements of App component
 // **********************************
 export const StyledImg: StyledComponent<"img", any, {}, never> = styled.img`
 	position: absolute;
@@ -316,6 +316,7 @@ export const StyledImg: StyledComponent<"img", any, {}, never> = styled.img`
 	object-fit: cover;
 	min-width: 100%;
 	max-width: 100%;
+	/* width: 100%; */
 	/* margin-top: 50px; */
 	/* min-width: 100vw; */
 	/* max-width: 100vw; */

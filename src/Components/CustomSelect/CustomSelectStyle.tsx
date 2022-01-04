@@ -1,5 +1,13 @@
 // Just some styles for the React-Select plugin component
 export const customStyles = { 
+		// Placeholder color
+		placeholder: (defaultStyles: any) => {
+			return {
+				...defaultStyles,
+				color: '#000000c1',
+			}
+		},
+		// Options design
 		option: (provided: any, state: any) => ({
 			...provided,
 			borderBottom: '1px dotted green',
@@ -21,7 +29,6 @@ export const customStyles = {
 			...base,
 			transition: "all 0.3s ease",
 			border: 0,
-			// This line disable the blue border
 			boxShadow: state.menuIsOpen ? "0 0 1px 1px #fff, 0 0 3px 3px #fff" : "none",
 
   		}),
@@ -30,6 +37,6 @@ export const customStyles = {
 			const opacity = 1 ;
 			const transition = 'opacity 500ms';
 
-			return { ...provided, opacity, transition };
+			return { ...provided, opacity, transition};
 		}
 	}

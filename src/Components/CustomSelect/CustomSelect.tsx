@@ -12,9 +12,10 @@ interface SelectProps{
   handleInput: (event: any) => void;
   styles?: StylesConfig<unknown, false, GroupBase<unknown>> | any;
   ref: React.MutableRefObject<undefined>;
+  error?: string;
 }
 
-const CustomSelect:React.FC<SelectProps> = ({id, datas,children, defaultInputValue, handleInput}) => {
+const CustomSelect:React.FC<SelectProps> = ({id, datas,children, defaultInputValue, handleInput, error}) => {
 
 	return (
 		<>
@@ -28,6 +29,9 @@ const CustomSelect:React.FC<SelectProps> = ({id, datas,children, defaultInputVal
 				defaultInputValue={defaultInputValue}
 				onChange={(e) =>handleInput(e)}  
 			/>
+			{error &&
+				<p>{error}</p>
+			}
 		</>
 	)
 }

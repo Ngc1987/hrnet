@@ -1,14 +1,16 @@
 import React, {useState} from 'react';
 import { HelpButton} from "../../styles/styles";
 import "../../styles/EmployeesTable.scss";
-import "../../App.scss"
+import "../../App.scss";
 
 
-
+/**
+ * @component
+ * @description Component Help, displayed on the EmployeesTable component, when click on the "Help", instructions appears just below, and "Help" button becomes "Close" button
+ */
 const Help:React.FC = () => {
 
 	const [showHelp, setShowHelp] = useState<boolean>(false);
-
 
 	return (
 

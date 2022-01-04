@@ -1,62 +1,23 @@
 @import "~ag-grid-community/src/styles/ag-grid.scss";
 @import "~ag-grid-community/src/styles/ag-theme-alpine/sass/ag-theme-alpine-mixin";
-@import "~ag-grid-community/src/styles/ag-theme-material/sass/ag-theme-material-mixin";
 
-.sc-jRQBWg, .kmnoZZ, .ag-root, .ag-unselectable, .ag-root-wrapper, .ag-layout-normal, .ag-ltr, .ag-root-wrapper-body, .ag-tab-guard, .ag-tab-guard-top, .ag-header, .ag-focus-managed, .ag-pivot-off, .ag-body-viewport, .ag-row-no-animation, .ag-center-cols-viewport, .ag-body-viewport, .ag-center-cols-clipper, .ag-center-cols-container, .ag-overlay, .ag-overlay-panel, .ag-overlay-no-rows-wrapper, .ag-overlay-wrapper, .ag-center-cols-container, .ag-floating-top, .ag-pinned-left-cols-container, .ag-hidden, .ag-pinned-right-cols-container, .ag-full-width-container {
-	background: #00000000;
-	// backdrop-filter: blur();
-}
-// .help {
-// 	width: 250px;
-// 	height: auto;
-// 	margin-top: 25px;
-// 	background-color: #00000020;
-// 	color: #000;
-// 	backdrop-filter: blur(1px);
-// 	border-radius: 10px;
-// 	transition: all 0.3s ease;
-// }
-// .ag-body-viewport {
-// 	// background-color: transparent;
-// 	background: #00000025;
-// 	font-style: italic;
+// .sc-jRQBWg, .kmnoZZ, .ag-root, .ag-unselectable, .ag-root-wrapper, .ag-layout-normal, .ag-ltr, .ag-root-wrapper-body, .ag-tab-guard, .ag-tab-guard-top, .ag-header, .ag-focus-managed, .ag-pivot-off, .ag-body-viewport, .ag-row-no-animation, .ag-center-cols-viewport, .ag-body-viewport, .ag-center-cols-clipper, .ag-center-cols-container, .ag-overlay, .ag-overlay-panel, .ag-overlay-no-rows-wrapper, .ag-overlay-wrapper, .ag-center-cols-container, .ag-floating-top, .ag-pinned-left-cols-container, .ag-hidden, .ag-pinned-right-cols-container, .ag-full-width-container {
+// 	background: #00000000;
 // }
 .XXX {
 	margin-top: 30px;
 	color: white;
 }
-// .ag-cell {
-// 		margin-top: 20px;
-// 	}
+
+ 
 .ag-theme-alpine {
-    // @include ag-theme-alpine((
-    //     // use theme parameters where possible
-    //     alpine-active-color: deeppink
-		
-    // ));
-    // @include ag-theme-alpine((
-    //     // use theme parameters where possible
-    //     --ag-foreground-color: black
-		
-    // ));
+	   .ag-layout-normal, .ag-ltr, .ag-root-wrapper-body, .ag-tab-guard, .ag-tab-guard-top, .ag-header,  .ag-pivot-off,   .ag-center-cols-viewport, .ag-body-viewport, .ag-center-cols-clipper, .ag-center-cols-container, .ag-overlay, .ag-overlay-panel, .ag-overlay-wrapper, .ag-center-cols-container, .ag-floating-top, .ag-pinned-left-cols-container, .ag-pinned-right-cols-container, .ag-full-width-container {
+		   background: transparent!important;
+		   // backdrop-filter: blur();
+		}
+		// background-color: transparent;
 
-    // .ag-header, .ag-header-cell-label {
-    //     // or write CSS selectors to make customisations beyond what the parameters support
-    //     font-style: italic;
-	// 	background-color: red;
-	// 	background: blue;
-	// 	// font-size: 20px;
-	// 	// border-radius: 10px;
-    // }
-	// background-color: #00000001!important;
-
-	   .ag-layout-normal, .ag-ltr, .ag-root-wrapper-body, .ag-tab-guard, .ag-tab-guard-top, .ag-header, .ag-focus-managed, .ag-pivot-off,   .ag-center-cols-viewport, .ag-body-viewport, .ag-center-cols-clipper, .ag-center-cols-container, .ag-overlay, .ag-overlay-panel, .ag-overlay-wrapper, .ag-center-cols-container, .ag-floating-top, .ag-pinned-left-cols-container, .ag-hidden, .ag-pinned-right-cols-container, .ag-full-width-container {
-		background-color: #ffffff0c!important;
-		// backdrop-filter: blur();
 		
-		
-	}
-
 	.ag-root-wrapper {
 		background: rgba(0, 0, 0, 0.068);
 		backdrop-filter: blur(5px);
@@ -65,25 +26,28 @@
 	.ag-body-viewport {
 		background: red;
 	}
-	.ag-root, .ag-unselectable, .ag-row-no-animation, .ag-overlay-no-rows-wrapper, .ag-cell, .ag-cell-not-inline-editing{
-		background-color: transparent!important;
+	.ag-root, .ag-unselectable, .ag-overlay-no-rows-wrapper, .ag-cell, .ag-cell-not-inline-editing{
+		// background-color: transparent;
+		background: transparent;
 	}	
 
 
 	.ag-root, .ag-row-no-animation,  .ag-cell, .ag-row-hover {
-		background-color: transparent!important;
+		// background-color: #ffffff3d!important;
+		background: #ffffff00;
 	}
-	.ag-row-hover {
-		background-color: transparent!important;
-	}
-
 	.ag-row, .ag-row-odd, .ag-row-no-focus, .ag-row, .ag-row-level-0, .ag-row-position-absolute, .ag-after-created {
-		background-color: #ffffff3d!important;
+		// background-color: #ffffff3d!important;
+		background-color: #ffffff70!important;
 		transition: all 0.1s ease;
 	}
-
-	.ag-popup, .ag-popup-child {
-		background-color: #ffffffb2!important;
-		// backdrop-filter: blur(5px);
+	.ag-row-hover {
+		background-color: rgba(0, 0, 0, 0.075)!important;
+		// background: transparent!important;
 	}
+
+	.ag-hidden, .ag-label, .ag-filter-body-wrapper, .ag-simple-filter-body-wrapper, .ag-popup, .ag-popup-child	 {
+			background: rgba(255, 255, 255, 0.781)!important;
+		}
+
 }

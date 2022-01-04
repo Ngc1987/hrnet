@@ -10,5 +10,8 @@ module.exports = {
 				use: ['babel-loader', 'astroturf/loader'],
 			}
 		]
-	}
+	},
+	optimization: {
+		usedExports: true,
+	},
 }
