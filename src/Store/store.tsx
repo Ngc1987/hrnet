@@ -1,5 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit';
-import employeesReducer from './Store/Employees';
+import employeesReducer from './Employees';
 // Initialize our store
 export const store = configureStore({
   reducer: {

@@ -1,38 +1,46 @@
 import { department, americanState, Employee } from '../models/models';
 
 // Departments datas to show on the select menu of the form 
-export const departments:department[] = [
+const departments:department[] = [
   { value: 'sales', label: 'Sales' },
   { value: 'marketing', label: 'Marketing' },
   { value: 'engineering', label: 'Engineering' },
   { value: 'human ressources', label: 'Human Ressources' },
   { value: 'legal', label: 'Legal' }
-]
+];
+
+export const sortedDepartments: department[] = departments.sort((a, b) => {
+	if(a.value < b.value) {
+		return -1
+	} else {
+		return 1
+	}
+});
 
 // States datas to show on the select menu of the form 
-export  const americanStates:americanState[] = [
-  { value: 'alabama', label: 'Alabama' },
-  { value: 'alaska', label: 'Alaska' },
-  { value: 'american Samoa', label: 'American Samoa' },
-  { value: 'arizona', label: 'Arizona' },
-  { value: 'arkansas', label: 'Arkansas' },
-  { value: 'california', label: 'California' },
-  { value: 'colorado', label: 'Colorado' },
-  { value: 'connecticut', label: 'Connecticut' },
-  { value: 'delaware', label: 'Delaware' },
-  { value: 'district of colombia', label: 'District of Colombia' },
-  { value: 'federated states of micronesia', label: 'Federated States of Micronesia' },
-  { value: 'florida', label: 'Florida' },
-  { value: 'georgia', label: 'Georgia' },
-  { value: 'guam', label: 'Guam' },
-  { value: 'hawaii', label: 'Hawaii' },
-  { value: 'idaho', label: 'Idaho' },
-  { value: 'illinois', label: 'Illinois' },
-  { value: 'indiana', label: 'Indiana' },
-  { value: 'iowa', label: 'Iowa' },
+const americanStates:americanState[] = [
+	{ value: 'california', label: 'California' },
+	{ value: 'federated states of micronesia', label: 'Federated States of Micronesia' },
+	{ value: 'alaska', label: 'Alaska' },
+	{ value: 'indiana', label: 'Indiana' },
+	{ value: 'american Samoa', label: 'American Samoa' },
+	{ value: 'arizona', label: 'Arizona' },
+	{ value: 'arkansas', label: 'Arkansas' },
+	{ value: 'colorado', label: 'Colorado' },
+	{ value: 'connecticut', label: 'Connecticut' },
+	{ value: 'delaware', label: 'Delaware' },
+	{ value: 'alabama', label: 'Alabama' },
+	{ value: 'florida', label: 'Florida' },
+	{ value: 'georgia', label: 'Georgia' },
+	{ value: 'guam', label: 'Guam' },
+	{ value: 'hawaii', label: 'Hawaii' },
+	{ value: 'idaho', label: 'Idaho' },
+	{ value: 'illinois', label: 'Illinois' },
+	{ value: 'iowa', label: 'Iowa' },
+	{ value: 'district of colombia', label: 'District of Colombia' },
   { value: 'kansas', label: 'Kansas' },
   { value: 'kentucky', label: 'Kentucky' },
-  { value: 'louisiana', label: 'Strawberry' },
+  { value: 'louisiana', label: 'Louisiana' },
   { value: 'maine', label: 'Maine' },
   { value: 'marshall Islands', label: 'Marshall Islands' },
   { value: 'maryland', label: 'Maryland' },
@@ -70,9 +78,18 @@ export  const americanStates:americanState[] = [
   { value: 'west virginia', label: 'West Virginia' },
   { value: 'wisconsin', label: 'Wisconsin' },
   { value: 'wyoming', label: 'Wyoming' }
-]
+];
+
+export const sortedAmericanStates: americanState[] = americanStates.sort((a, b) => {
+	if(a.value < b.value) {
+		return -1
+	} else {
+		return 1
+	}
+})
+
 // Just some employees datas to show on the demo version
-const MockedDatas: Employee[] = [
+export const MockedEmployees: Employee[] = [
 	{
 		firstName: "Robert",
 		lastName: "Chang",
@@ -194,6 +211,4 @@ const MockedDatas: Employee[] = [
 		zipcode: 19870,
 		department: "Engineering",
 	},
-]
-
-export default MockedDatas;
+];

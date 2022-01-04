@@ -1,10 +1,10 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import MockedDatas from '../Mocks/MockedDatas';
+import {MockedEmployees} from '../Mocks/MockedDatas';
 import { Employee, Employees } from '../models/models';
 
 // Initialize the state with mocked datas
 const initialState: Employees = {
-  employees: MockedDatas
+  employees: MockedEmployees
 }
 console.log(initialState)
 

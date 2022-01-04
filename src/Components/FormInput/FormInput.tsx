@@ -19,7 +19,7 @@ interface Props {
  * @description Component FormInput, for every input on the form, who don't come from an external library, pure html element
  */
 const FormInput:React.FC<Props> = ({type, id, min, max, children, value, placeholder, handleInput, error}) => {
-	console.log(error)
+	// console.log(error)
 	return (
 		<>
 			<StyledLabel 

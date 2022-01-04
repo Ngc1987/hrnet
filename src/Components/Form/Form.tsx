@@ -1,8 +1,8 @@
 import React, { useState, useRef, Suspense } from "react";
 import {department, americanState} from '../../models/models';
-import { departments, americanStates } from '../../Mocks/MockedDatas';
-import {useAppDispatch } from "../../hooks";
-import { AppDispatch } from '../../store';
+import { sortedDepartments, sortedAmericanStates } from '../../Mocks/MockedDatas';
+import {useAppDispatch } from "../../Store/hooks";
+import { AppDispatch } from '../../Store/store';
 import { Employee } from "../../models/models";
 import { addNewEmployee } from '../../Store/Employees';
 import { customStyles } from '../CustomSelect/CustomSelectStyle';
@@ -10,6 +10,7 @@ import {ErrorDiv, StyledButton, StyledForm, StyledSelectLabel, StyledLayout} fro
 import Loading from "../Loading/Loading";
 import 'react-modern-calendar-datepicker/lib/DatePicker.css';
 import DatePicker, {Day, DayValue } from 'react-modern-calendar-datepicker';
+import "../../styles/datepicker.scss";
 
 const Modale = React.lazy(() => import("../Utils/modale"));
 const Select = React.lazy(() => import("react-select"));
@@ -19,9 +20,9 @@ const Form:React.FC = () => {
 
 	const dispatch: AppDispatch = useAppDispatch();
 	// Datas of all the american states we need on our select states input
-	const [states, setStates] = useState<americanState[]>(americanStates);
+	const [states, setStates] = useState<americanState[]>(sortedAmericanStates);
 	// Datas of all the departments we need on our select departments input
-	const [allDepartments, setDepartments] = useState<department[]>(departments);
+	const [allDepartments, setDepartments] = useState<department[]>(sortedDepartments);
 	const [invalidForm, setInvalidForm] = useState<boolean>(false);
 
 	// State to show or not the validation modale
@@ -47,8 +48,9 @@ const Form:React.FC = () => {
 
 	// Set the state with an empty employee
 	const [newEmployee, setNewEmployee] = useState<Employee>(emptyEmployee);
+	console.log(newEmployee)	
 
-	// Function to take the value of all the inputs, to put on our new employee state
+	// Function to take the value of all the classic inputs, to put on our new employee state
 	const handleChangeInput = (e: { target: { id: string; value: string; }; }):void => {
 		// console.log(e.target.value)
 		setNewEmployee((newEmployee: any) => ({
@@ -88,9 +90,6 @@ const Form:React.FC = () => {
 		selectDepartmentRef.current.clearValue();
 	}
 
-	
-
-	
 	function validForm(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
 		e.preventDefault();
 
@@ -116,175 +115,183 @@ const Form:React.FC = () => {
 
 	// Max value for the startDay input, who is today every time
 	const today:string = new Date().toISOString().split('T')[0];
-	console.log(today)
-	// Max value for the birthDate input, who is today less 18 years. I think in this case all of the employees have 18 or more, we don't take childs at work in normal enterprises
-	const minDateForWork = ():string =>  {
-		let minDate:string = "";
-		let year:number = (parseInt(today.split("-")[0]) - 18);
-		let month:string = (today.split("-")[1]);
-		let day:string = (today.split("-")[2]);
-		minDate = `${year.toString()}-${month}-${day}`;
-		return minDate
-	}
 
+	// Max value for the startDay input, default is today because i don't want to create a new employee for the future
+	const minDateForWork = ():Day =>  {
+		let year:number = (parseInt(today.split("-")[0]));
+		let month:number = (parseInt(today.split("-")[1]));
+		let day:number = (parseInt(today.split("-")[2]));
 
- 	const dateFormatList: string[] = ['DD/MM/YYYY', 'DD/MM/YY'];
-	 console.log(newEmployee)
-
-	const [Day, setDay] = useState<DayValue>(null);
-	console.log(Day)
-
-	// if(Day) {
-	// 	let day = "0"
-	// 	if(Day.month < 10) {
-	// 		day += Day.month
-	// 	}
-	// 	setNewEmployee((newEmployee) => ({
-	// 	...newEmployee,
-	// 	"birthDate": `${Day.day}/${day}/${Day.year}`
-	// 	}));
-	// }
-	const setBirthDate = (e: any):void  => {
-		console.log(typeof e)
-		let month: string = "0"
-		if(e.month < 10) {
-			month += e.month
+		let dateToShow:Day = {
+			year: year,
+			month: month,
+			day: day
 		}
+		return dateToShow
+	}
+	// Max value for the birthDate input, who is today less 18 years. I think in this case all of the employees have 18 or more, we don't take childs at work in normal enterprises
+	const minBirthDate = ():Day =>  {
+		let year:number = (parseInt(today.split("-")[0]) - 18);
+		let month:number = (parseInt(today.split("-")[1]));
+		let day:number = (parseInt(today.split("-")[2]));
+
+		let dateToShow:Day = {
+			year: year,
+			month: month,
+			day: day
+		}
+		return dateToShow
+	}
+	
+	// Need to create initial individual state for the react-modern-calendar-datepicker, because with typescript this dependencie need another date format than i have in my newEmployee state
+	const [Day, setDay] = useState<DayValue>(minBirthDate());
+	const [startDay, setStartDay] = useState<DayValue>(minDateForWork());
+	
+	// Function to transform the date value from the react-datepicker component, to the value i need for the newEmployee state birthdate
+	const setBirthDate = (date: any):void  => {
+
+		let month: string = "0";
+		let day: string = "0";
+		date.month < 10 ? month += date.month : month = date.month;
+		date.day < 10 ? day += date.day : day = date.day;
+
 		setNewEmployee((newEmployee) => ({
 			...newEmployee,
-			"birthDate": `${e.day}/${month}/${e.year}`
-			}));
-  	}
+			"birthDate": `${date.year}-${day}-${month}`
+		}));
+	}
 
+	// Function to transform the date value from the react-datepicker component, to the value i need for the newEmployee state startDay
+	const setStartDate = (date: any):void  => {
+
+		let month: string = "0";
+		let day: string = "0";
+		date.month < 10 ? month += date.month : month = date.month;
+		date.day < 10 ? day += date.day : day = date.day;
+
+		setNewEmployee((newEmployee) => ({
+			...newEmployee,
+			"startDay": `${date.year}-${day}-${month}`
+		}));
+	}
+	
 	return (
 		<>
-		<StyledForm 
-			>
-
-			<Suspense fallback={<Loading/>}>
-
-			<h2>Create a new employee</h2>
-			<FormInput 
-				type="text" 
-				id="firstName" 
-				children="First Name"
-				value={newEmployee.firstName}
-				handleInput={(e) => handleChangeInput(e)} 
-				/>
-				
-
-			
-			<FormInput 
-				type="text" 
-				id="lastName" 
-				children="Last Name"
-				value={newEmployee.lastName}
-				handleInput={handleChangeInput} 
-				/>
-				
-			
-			<FormInput 
-				type="date" 
-				id="birthDate" 
-				min="1900-01-01" 
-				max={minDateForWork()} 
-				children="Date of birth"
-				value={newEmployee.birthDate}
-				handleInput={handleChangeInput} 
-				/>
-
-				<DatePicker
-				value={Day}
-				onChange={(e) => {setBirthDate(e); setDay(e)}}
-				shouldHighlightWeekends
-				/>
-			
-			<FormInput 
-				type="date" 
-				id="startDay" 
-				min="1990-01-01" 
-				max={today} 
-				children="Start day"
-				value={newEmployee.startDay}
-				handleInput={handleChangeInput} 
-				// placeholder={today}
-				/>
-
-			<h3>Adress</h3>
-			<FormInput 
-				type="text" 
-				id="street" 
-				children="Street"
-				value={newEmployee.street}
-				handleInput={handleChangeInput} 
-				/>
-				
-			
-			<FormInput 
-				type="text" 
-				id="city" 
-				children="City"
-				value={newEmployee.city}
-				handleInput={handleChangeInput} 
-				/>
-				
-			
-			
-			<StyledSelectLabel htmlFor="state" >State</StyledSelectLabel>
-			<Select 
-				styles={customStyles} 
-				theme={(theme)=> ({...theme, borderRadius: 10})}
-				options={states} 
-				inputId="state"
-				placeholder="Alabama"
-				onChange={(e) =>handleChangeState(e)}  
-				ref={selectStateRef}
-				// defaultInputValue="Alabama"
-				// isClearable={true}
-				/>
-			
-			<FormInput 
-				type="number" 
-				id="zipcode" 
-				children="Zip Code"
-				placeholder="83850"
-				value={newEmployee.zipcode}
-				handleInput={handleChangeInput} 
-				/>
-
-			<StyledSelectLabel htmlFor="department" >Department</StyledSelectLabel>
-			<Select 
-				styles={customStyles} 
-				theme={(theme)=> ({...theme, borderRadius: 10})}
-				options={allDepartments} 
-				placeholder="Marketing"
-				inputId="department"
-				onChange={(e) =>handleChangeDepartment(e)}  
-				ref={selectDepartmentRef}
-				// isClearable={true}
-				/>
-			
-			{invalidForm && <ErrorDiv className="error" >Veuillez compléter correctement tous les champs </ErrorDiv>}
-
-			<StyledButton onClick={(e) => validForm(e)}  >Save</StyledButton>
-			
-		</Suspense>
-			
-		</StyledForm>
-
-		{showModale && 
-			<StyledLayout>
 				<Suspense fallback={<Loading/>}>
-					<Modale 
-						text="Congratulations, you successly created a new employee !" 
-						buttonText="OK"
-						colour="#8acd32" 
-						hideModale={hideModale} 
-						// autoclose={2000}
-						/>
-				</Suspense>
-			</StyledLayout>
-		}
+			<StyledForm>
+
+
+				<h2>Create a new employee</h2>
+				<FormInput 
+					type="text" 
+					id="firstName" 
+					children="First Name"
+					value={newEmployee.firstName}
+					handleInput={(e) => handleChangeInput(e)} 
+				/>
+					
+				<FormInput 
+					type="text" 
+					id="lastName" 
+					children="Last Name"
+					value={newEmployee.lastName}
+					handleInput={handleChangeInput} 
+				/>
+					
+				<StyledSelectLabel htmlFor="birthDate" >Birth Date</StyledSelectLabel>
+				<DatePicker
+					inputName="birthDate"
+					value={Day}
+					onChange={(date) => {setBirthDate(date); setDay(date)}}
+					shouldHighlightWeekends
+					maximumDate={minBirthDate()}
+					inputPlaceholder="Select a date"
+					inputClassName="datepicker"
+					wrapperClassName="front"
+				/>
+
+				<StyledSelectLabel htmlFor="startDay">Start Day</StyledSelectLabel>
+				<DatePicker
+					inputName="startDay"
+					value={startDay}
+					onChange={(date) => {setStartDate(date); setStartDay(date)}}
+					shouldHighlightWeekends
+					maximumDate={minDateForWork()}
+					inputPlaceholder="Select a date"
+					inputClassName="datepicker"
+					wrapperClassName="behind"
+				/>
+
+				<h3>Adress</h3>
+				<FormInput 
+					type="text" 
+					id="street" 
+					children="Street"
+					value={newEmployee.street}
+					handleInput={handleChangeInput} 
+				/>
+					
+				<FormInput 
+					type="text" 
+					id="city" 
+					children="City"
+					value={newEmployee.city}
+					handleInput={handleChangeInput} 
+				/>
+					
+				<StyledSelectLabel htmlFor="state" >State</StyledSelectLabel>
+				<Select 
+					styles={customStyles} 
+					theme={(theme)=> ({...theme, borderRadius: 10})}
+					options={states} 
+					inputId="state"
+					placeholder="Select a state"
+					onChange={(e) =>handleChangeState(e)}  
+					ref={selectStateRef}
+				/>
+				
+				<FormInput 
+					type="number" 
+					id="zipcode" 
+					children="Zip Code"
+					placeholder="83850"
+					value={newEmployee.zipcode}
+					handleInput={handleChangeInput} 
+					/>
+
+				<StyledSelectLabel htmlFor="department" >Department</StyledSelectLabel>
+				<Select 
+					styles={customStyles} 
+					theme={(theme)=> ({...theme, borderRadius: 10})}
+					options={allDepartments} 
+					placeholder="Select a department"
+					inputId="department"
+					onChange={(e) =>handleChangeDepartment(e)}  
+					ref={selectDepartmentRef}
+					// isClearable={true}
+					/>
+				
+				{invalidForm && <ErrorDiv className="error" >Veuillez compléter correctement tous les champs </ErrorDiv>}
+
+				<StyledButton onClick={(e) => validForm(e)}  >Save</StyledButton>
+				
+				
+			</StyledForm>
+			</Suspense>
+
+			{showModale && 
+				<StyledLayout>
+					<Suspense fallback={<Loading/>}>
+						<Modale 
+							text="Congratulations, you successly created a new employee !" 
+							buttonText="OK"
+							colour="#8acd32" 
+							hideModale={hideModale} 
+							// autoclose={2000}
+							/>
+					</Suspense>
+				</StyledLayout>
+			}
 
 		</>
 

@@ -58,6 +58,7 @@ export const StyledButton: StyledComponent<"button", any, {}, never> = styled.bu
 	:hover {
 		box-shadow: 0 0 1px 1px #8acd32, 0 0 3px 3px #8acd32;
 		background-color: #8acd32;
+		border:  1px solid transparent;
 	}
 `
 export const ModaleButton: StyledComponent<"button", any, {}, never> = styled.button`
@@ -149,17 +150,6 @@ export const HelpButton: StyledComponent<"div", any, {}, never> = styled.div`
 	border-radius: 5px;
 	transition: all 0.3s ease;
 `
-
-// export const StyledHelpDiv: StyledComponent<"div", any, {}, never> = styled.div`
-// 	width: 250px;
-// 	/* height: auto; */
-// 	/* margin-top: 25px; */
-// 	background-color: #ffffff20;
-// 	color: #000;
-// 	backdrop-filter: blur(1px);
-// 	border-radius: 10px;
-// 	transition: all 0.3s ease;
-// `
 
 // **********************************
 // Styled elements of EmployeesTable component
