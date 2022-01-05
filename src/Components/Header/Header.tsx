@@ -21,10 +21,10 @@ const Header:React.FC = () => {
 				</Head>
 				<Nav>
 					<StyledNavLink>
-						<CustomNavLink to="/">Home</CustomNavLink>
+						<CustomNavLink data-testid="homeButton" to="/">Home</CustomNavLink>
 					</StyledNavLink>
 					<StyledNavLink>
-						<CustomNavLink to="/employees">Employees</CustomNavLink>
+						<CustomNavLink data-testid="employeesButton" to="/employees">Employees</CustomNavLink>
 					</StyledNavLink>
 				</Nav>
 			</>

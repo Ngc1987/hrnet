@@ -11,7 +11,7 @@ const Error:React.FC = () => {
 
 
 	return (
-		<ErrorSection className="error404">
+		<ErrorSection data-testid="error" className="error404">
 			<>
 				<ErrorNumber className="error404__number">404</ErrorNumber>
 				<ErrorText className="error404__phrase">
@@ -21,7 +21,7 @@ const Error:React.FC = () => {
 			</>
 
 			<Link to="/" >
-				<ErrorLink className="error404__homeLink">Retourner sur la page d'accueil</ErrorLink>
+				<ErrorLink data-testid="errorLink" className="error404__homeLink">Retourner sur la page d'accueil</ErrorLink>
 			</Link>
 
 		</ErrorSection>

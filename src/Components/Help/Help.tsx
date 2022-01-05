@@ -14,9 +14,9 @@ const Help:React.FC = () => {
 	return (
 
 		<>
-			<HelpButton onClick={() => setShowHelp(!showHelp)} >{showHelp ? "Close" : "Help"}</HelpButton>
+			<HelpButton onClick={() => setShowHelp(!showHelp)} data-testid="helpButton">{showHelp ? "Close" : "Help"}</HelpButton>
 				
-			<div className={showHelp ? "help visible" : "help hidden"} >
+			<div className={showHelp ? "help visible" : "help hidden"}>
 				{showHelp && 
 					<>
 						<p>Click on the column title to sort the elements. One time to ascending sort, two times for descending sort, three times to initial.</p>

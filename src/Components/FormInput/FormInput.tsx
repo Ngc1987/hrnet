@@ -23,8 +23,11 @@ const FormInput:React.FC<Props> = ({type, id, min, max, children, value, placeho
 	return (
 		<>
 			<StyledLabel 
-				htmlFor={id} >{children}</StyledLabel>
+				htmlFor={id} 
+				data-testid="formInputLabel"
+				>{children}</StyledLabel>
 			<StyledInput 
+				data-testid="formInput"
 				onChange={(e) =>handleInput(e)} 
 				value={value}
 				type={type} 

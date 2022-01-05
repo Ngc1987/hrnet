@@ -177,9 +177,8 @@ const Form:React.FC = () => {
 	
 	return (
 		<>
-				<Suspense fallback={<Loading/>}>
-			<StyledForm>
-
+			<Suspense fallback={<Loading/>}>
+			<StyledForm data-testid="form">
 
 				<h2>Create a new employee</h2>
 				<FormInput 

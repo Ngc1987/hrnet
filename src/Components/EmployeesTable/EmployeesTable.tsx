@@ -91,7 +91,7 @@ const EmployeesTable:React.FC = () => {
 		<>
 			<Suspense fallback={<Loading/>}>
 				<Help/>
-				<StyledSection  className="ag-theme-alpine"  style={{height: 400, width: "80%"}}>
+				<StyledSection data-testid="employeesTable" className="ag-theme-alpine"  style={{height: 400, width: "80%"}}>
 					<AgGridReact
 						rowData={employeeList}
 						defaultColDef={defaultColDef}

@@ -5,7 +5,7 @@ import "../../styles/Loading.scss"
  */
 const Loading:React.FC = () =>  {
 	return (
-		<div className="lds-roller"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+		<div data-testid="loader" className="lds-roller"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
 	)
 }
 

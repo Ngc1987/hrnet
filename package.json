@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": false,
   "dependencies": {
+    "@babel/preset-typescript": "^7.16.7",
     "@craco/craco": "^5.9.0",
     "@reduxjs/toolkit": "^1.7.0",
     "@testing-library/jest-dom": "^5.15.1",
@@ -34,6 +35,7 @@
     "start": "craco start ",
     "build": "craco build",
     "test": "craco test",
+    "jest": "craco test --coverage",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
