@@ -21,3 +21,14 @@
 .behind {
   z-index: 99;
 }
+
+@media (max-width: 768px) {
+  .calendar {
+    font-size: 9px !important;
+  }
+}
+@media (max-width: 560px) {
+  .calendar {
+    font-size: 8px !important;
+  }
+}

@@ -26,6 +26,10 @@ export const StyledForm: StyledComponent<"form", any, {}, never> = styled.form`
 	border-radius: 20px;
 	transition: all 0.3s ease;
 	box-shadow: 5px 5px 15px #0000006f;
+
+	@media (max-width: 560px) {
+		width: 100%;
+	}
 	
 	h2 {
 		text-align: center;

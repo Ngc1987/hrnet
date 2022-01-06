@@ -36,7 +36,9 @@
     "build": "craco build",
     "test": "craco test",
     "jest": "craco test --coverage",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "jsdoc": "npx jsdoc ./src/ -r -c ./node_modules/jsdoc/conf.json",
+    "tsdoc": "npx typedoc  --entryPointStrategy expand ./src "
   },
   "eslintConfig": {
     "extends": [
@@ -64,7 +66,8 @@
     "postcss": "^8.4.5",
     "postcss-loader": "^6.2.1",
     "react-modern-calendar-datepicker": "^3.1.6",
-    "sass": "^1.45.0"
+    "sass": "^1.45.0",
+    "typedoc": "^0.22.10"
   },
   "files.watcherExclude": {
     "**/.git/objects/**": true,

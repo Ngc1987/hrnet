@@ -13,8 +13,7 @@ const AgGridReact = React.lazy(() => import("../Utils/AgGridReact"));
 const AgGridColumn = React.lazy(() => import("../Utils/AgGridColumn"));
 
 /**
- * @component
- * @description Component EmployeesTable is the component who show a table, with all of our employees and there datas
+ * Component EmployeesTable is the component who show a table, with all of our employees and there datas
  */
 const EmployeesTable:React.FC = () => {
 

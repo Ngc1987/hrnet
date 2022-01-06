@@ -4,11 +4,11 @@ import "../../styles/help.scss";
 
 
 /**
- * @component
- * @description Component Help, displayed on the EmployeesTable component, when click on the "Help", instructions appears just below, and "Help" button becomes "Close" button
+ * Component Help, displayed on the EmployeesTable component, when click on the "Help", instructions appears just below, and "Help" button becomes "Close" button
  */
 const Help:React.FC = () => {
 
+	// State to show or not the help text
 	const [showHelp, setShowHelp] = useState<boolean>(false);
 
 	return (

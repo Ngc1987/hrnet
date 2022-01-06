@@ -1,4 +1,7 @@
 // Just some styles for the React-Select plugin component
+/**
+ * @ignore
+ */
 export const customStyles = { 
 		// Placeholder color
 		placeholder: (defaultStyles: any) => {

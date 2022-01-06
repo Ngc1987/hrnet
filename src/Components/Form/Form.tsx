@@ -5,7 +5,7 @@ import {useAppDispatch } from "../../Store/hooks";
 import { AppDispatch } from '../../Store/store';
 import { Employee } from "../../models/models";
 import { addNewEmployee } from '../../Store/Employees';
-import { customStyles } from '../CustomSelect/CustomSelectStyle';
+import { customStyles } from '../../styles/SelectStyle';
 import {ErrorDiv, StyledButton, StyledForm, StyledSelectLabel, StyledLayout} from "../../styles/styles";
 import Loading from "../Loading/Loading";
 import 'react-modern-calendar-datepicker/lib/DatePicker.css';
@@ -16,6 +16,10 @@ const Modale = React.lazy(() => import("../Utils/modale"));
 const Select = React.lazy(() => import("react-select"));
 const FormInput = React.lazy(() => import("../FormInput/FormInput"));
 
+
+/**
+ * Component Form is the component who show a form on the home page, you have to fill it to register a new employee
+ */
 const Form:React.FC = () => {
 
 	const dispatch: AppDispatch = useAppDispatch();
@@ -43,7 +47,7 @@ const Form:React.FC = () => {
 		"city": "",	
 		"state": "",
 		"zipcode": "",
-		"department": ""
+		"department": "dfd"
 	}
 
 	// Set the state with an empty employee
@@ -207,6 +211,7 @@ const Form:React.FC = () => {
 					inputPlaceholder="Select a date"
 					inputClassName="datepicker"
 					wrapperClassName="front"
+					calendarClassName="calendar"
 				/>
 
 				<StyledSelectLabel htmlFor="startDay">Start Day</StyledSelectLabel>
@@ -219,6 +224,7 @@ const Form:React.FC = () => {
 					inputPlaceholder="Select a date"
 					inputClassName="datepicker"
 					wrapperClassName="behind"
+					calendarClassName="calendar"
 				/>
 
 				<h3>Adress</h3>
@@ -263,10 +269,11 @@ const Form:React.FC = () => {
 					styles={customStyles} 
 					theme={(theme)=> ({...theme, borderRadius: 10})}
 					options={allDepartments} 
-					placeholder="Select a department"
+					// placeholder="Select a department"
 					inputId="department"
 					onChange={(e) =>handleChangeDepartment(e)}  
 					ref={selectDepartmentRef}
+					// value={newEmployee.department}
 					// isClearable={true}
 					/>
 				

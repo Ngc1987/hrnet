@@ -3,6 +3,9 @@ import {MockedEmployees} from '../Mocks/MockedDatas';
 import { Employee, Employees } from '../models/models';
 
 // Initialize the state with mocked datas
+/**
+ * @type {Employees}
+ */
 const initialState: Employees = {
   employees: MockedEmployees
 }

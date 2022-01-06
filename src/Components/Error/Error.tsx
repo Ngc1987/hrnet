@@ -1,16 +1,18 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import "./Error404.scss";
 import { Link } from 'react-router-dom';
 import { ErrorSection, ErrorNumber, ErrorText, ErrorLink } from '../../styles/styles';
-
+import Loading from '../Loading/Loading';
+// const Loading: React.LazyExoticComponent<React.FC<{}>> = React.lazy(() => import("../Loading/Loading"));
 /**
- * @component
- * @description Component Error who appears when the datas are fetched and an error is occured 
+ * Component Error who appears when the datas are fetched and an error is occured 
  */
 const Error:React.FC = () => {
 
 
 	return (
+		<Suspense fallback={<Loading/>}>
+
 		<ErrorSection data-testid="error" className="error404">
 			<>
 				<ErrorNumber className="error404__number">404</ErrorNumber>
@@ -25,6 +27,7 @@ const Error:React.FC = () => {
 			</Link>
 
 		</ErrorSection>
+		</Suspense>
 	)
 }
 

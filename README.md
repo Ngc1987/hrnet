@@ -1,46 +1,68 @@
-# Getting Started with Create React App
+[![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)](https://reactjs.org/) [![GitHub](https://img.shields.io/badge/React_Router-CA4245?style=for-the-badge&logo=react-router&logoColor=white)](https://reactrouter.com/) [![Typescript](https://img.shields.io/badge/TYPESCRIPT-3466f0?style=for-the-badge&logo=typescript&logoColor=1c1275)](https://www.typescriptlang.org/) [![GitHub](https://img.shields.io/badge/JSX-4F4FD4?style=for-the-badge&logo=react&logoColor=61DAFB)](https://reactjs.org/docs/introducing-jsx.html) [![GitHub](https://img.shields.io/badge/Sass-CC6699?style=for-the-badge&logo=sass&logoColor=white)](https://sass-lang.com/) 
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+# HrNet by Wealth Health
+<p align="center">
+ 💸💰 HrNet is an app provided by Wealth Health, to manage the employees of the enterprise 💰💸
+</p>
 
-In the project directory, you can run:
+![Mockup of the home page](https://i.imgur.com/IQ3tNUK.png)
 
-### `npm start`
+<p align="center">
+<a href="https://hrnetapp.netlify.app">🌍 Live démo
+</a>
+</p>
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## 1. Documentation
 
-### `npm test`
+The documentation can be viewed by following the link: [documentation](https://hrnetdoc.netlify.app/)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## 2. Author
+Thomas Semeria
 
-### `npm run build`
+## 3. Languages
+- Typescript
+- JSX
+- SCSS
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## 4.Technologies
+- [React](https://reactjs.org/)
+- [React Router Dom](https://v5.reactrouter.com/web/guides/quick-start)
+- [React Redux Toolkit](https://redux-toolkit.js.org/)
+- [Styled Components](https://styled-components.com/)
+- [Sass](https://sass-lang.com/)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## 5. Project
+This project is the 14th project for the React front-end developer [formation](https://openclassrooms.com/fr/paths/516-developpeur-dapplication-javascript-react#main_content) of OpenClassRooms.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+We need to rebuild the old jquery version of the HrNet app, in React app. For the design no constraint, but just make something simple and modern.
+Also there is four plugins (DatePicker, select menu, the employees table, and a modale who is displayed when you succesly register a new employee) who are unfunctionnal, and we need to make there on react components, and choose one to build a new one on Npm package.
 
-### `npm run eject`
+So i make the modale on Npm package, you can find it here: [TsModale](https://www.npmjs.com/package/tsmodale), just install it, put the props you need, and enjoy this beautiful modale 🪄
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+For the datePicker, i choose this one [react-modern-calendar-datepicker](https://kiarash-z.github.io/react-modern-calendar-datepicker/) who is very nice and customizable.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+For the table i use [Ag Grid](https://www.ag-grid.com/), not very easy to use at first, but with some work you can do a lot of cool things.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+And for the select menu, i use [React Select](https://react-select.com/home), a nice and customizable select menu.
+ All of these components meet the technical constraints, who are to be responsive, efficients and fast.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+Also i use react-redux-toolkit to manage the state of the registered employees.
+You can see here a model of the employees table.
 
-## Learn More
+![Mockup of the employees page](https://i.imgur.com/nKb2MjO.png)
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## 5 Installation
+
+First fork this [repo](https://github.com/Ngc1987/hrnet).
+```bash
+# Install the dependencies
+npm install
+
+# And launch the app
+npm start
+```	
+
+That's it, you can now manage your employees on the application !!

@@ -26,6 +26,5 @@ describe('Form component', () => {
 		// Check if the children props, who is the value displayed for the label, appears on the page
 		const form = screen.getByTestId("form");
 		expect(form).toBeInTheDocument();
-
     })
 })

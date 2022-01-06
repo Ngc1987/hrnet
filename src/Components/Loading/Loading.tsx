@@ -1,7 +1,6 @@
 import "../../styles/Loading.scss"
 /**
- * @component
- * @description Component Loading, who appears on the fallbacks of React.Suspense, on FOrm and EmployeesTable components
+ * Component Loading, who appears on the fallbacks of React.Suspense, on FOrm and EmployeesTable components
  */
 const Loading:React.FC = () =>  {
 	return (

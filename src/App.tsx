@@ -8,8 +8,7 @@ import Error from './Components/Error/Error';
 import { StyledImg, StyledMain } from './styles/styles';
 
 /**
- * @component
- * @description The entire application and all routes are set on this component
+ * The entire application and all routes are set on this component
  */
 const App:React.FC = () => {
   	return (
