@@ -34,7 +34,6 @@ Thomas Semeria
 - [Sass](https://sass-lang.com/)
 
 ## 5. Project
-This project is the 14th project for the React front-end developer [formation](https://openclassrooms.com/fr/paths/516-developpeur-dapplication-javascript-react#main_content) of OpenClassRooms.
 
 We need to rebuild the old jquery version of the HrNet app, in React app. For the design no constraint, but just make something simple and modern.
 Also there is four plugins (DatePicker, select menu, the employees table, and a modale who is displayed when you succesly register a new employee) who are unfunctionnal, and we need to make there on react components, and choose one to build a new one on Npm package.
